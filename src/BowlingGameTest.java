@@ -32,7 +32,6 @@ public class BowlingGameTest {
     public void UneSeuleQuille(){
         game.roll(1);
         rollMany(19, 0);
-        //assertEquals(20, game.totalRollNb());
         assertEquals(1, game.score());
         assertEquals(0, game.nbObSpares());
         assertEquals(0, game.nbOfStrikes());
@@ -48,7 +47,6 @@ public class BowlingGameTest {
     @Test
     public void QueDesUneSeuleQuille(){
         rollMany(20, 1);
-        //assertEquals(20, game.totalRollNb());
         assertEquals(20, game.score());
         assertEquals(0, game.nbObSpares());
         assertEquals(0, game.nbOfStrikes());
@@ -64,7 +62,6 @@ public class BowlingGameTest {
     @Test
     public void TricheEtFaitUnLancerDeTrop(){
         rollMany(21, 1);
-        //assertEquals(20, game.totalRollNb());
         assertEquals(21, game.score());
         assertEquals(0, game.nbObSpares());
         assertEquals(0, game.nbOfStrikes());
@@ -80,7 +77,6 @@ public class BowlingGameTest {
     @Test
     public void TricheEtFaitDeuxLancersDeTrop(){
         rollMany(22, 1);
-        //assertEquals(20, game.totalRollNb());
         assertEquals(22, game.score());
         assertEquals(0, game.nbObSpares());
         assertEquals(0, game.nbOfStrikes());
@@ -138,7 +134,7 @@ public class BowlingGameTest {
         game.roll(8);
         game.roll(2);
         game.roll(1);
-        assertEquals(12, game.score());
+        assertEquals(11, game.score());
         assertEquals(1, game.nbObSpares());
         assertEquals(0, game.nbOfStrikes());
         assertEquals(18, game.nbOfFails());
@@ -148,6 +144,24 @@ public class BowlingGameTest {
         assertEquals(false, game.checkIfCheater());
         assertEquals(true, game.checkIfHasWonExtraRoll());
         assertEquals(false, game.checkIfHasWonExtraFrame());
+    }
+    
+    @Test
+    public void FiniParStrikePuisSpare(){
+        rollMany(18, 0);
+        game.roll(10);
+        game.roll(2);
+        game.roll(8);
+        assertEquals(20, game.score());
+        assertEquals(1, game.nbObSpares());
+        assertEquals(1, game.nbOfStrikes());
+        assertEquals(18, game.nbOfFails());
+        assertEquals(21, game.nbOfRolls());
+        assertEquals(11, game.nbOfFrames());
+        assertEquals(0, game.checkIfNotWrong());
+        assertEquals(false, game.checkIfCheater());
+        assertEquals(false, game.checkIfHasWonExtraRoll());
+        assertEquals(true, game.checkIfHasWonExtraFrame());
     }
     
     @Test
@@ -162,8 +176,8 @@ public class BowlingGameTest {
         assertEquals(16, game.nbOfFails());
         assertEquals(19, game.nbOfRolls());
         assertEquals(10, game.nbOfFrames());
-        //assertEquals(0, game.checkIfNotWrong());
-        //assertEquals(false, game.checkIfCheater());
+        assertEquals(0, game.checkIfNotWrong());
+        assertEquals(false, game.checkIfCheater());
         assertEquals(false, game.checkIfHasWonExtraRoll());
         assertEquals(false, game.checkIfHasWonExtraFrame());
     }
@@ -314,7 +328,6 @@ public class BowlingGameTest {
         assertEquals(true, game.checkIfHasWonExtraFrame());
     }
    
-    
     @Test
     public void StrikeSuiviDeuxSpares(){
     	game.roll(10);

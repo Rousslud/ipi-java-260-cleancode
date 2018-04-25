@@ -1,20 +1,22 @@
 public class BowlingGame {
 
-    private int score;
-    private int rollsToPlay=20; 
+	private int rollsToPlay=20; 
     private int framesToPlay=10;
+    private int roll1Score=0;
+    private int strikeBonusCountRoll=0;
+    private boolean frameIn2Rolls=false;
+    private boolean isSpare=false;
+    private boolean isStrike=false;
+    
+    	
+    private int score;
     private int totalNbStrikes=0; 
     private int totalNbSpares=0;
     private int totalNbFails=0;
     private int totalNbFrames=0;
     private int totalNbRolls=0;
-    private int roll1Score=0;
-    private int strikeBonusCountRoll=0;
     private int checkIfNotWrong=1;
-    private boolean frameIn2Rolls=false;
     private boolean alertCheater=false;
-    private boolean isSpare=false;
-    private boolean isStrike=false;
     private boolean hasWonExtraRoll=false;
     private boolean hasWonExtraFrame=false;
          
@@ -81,6 +83,7 @@ public class BowlingGame {
     		totalNbRolls++;
     		score+=10;
     		strikeBonusCountRoll+=2;
+    		// Allow to add one frame if game is finishing by a strike
 			if (hasWonExtraFrame!= true && framesToPlay==0 && rollsToPlay==0 && isStrike==true) {
 		    	rollsToPlay+=2;
 		    	framesToPlay++;
@@ -104,9 +107,11 @@ public class BowlingGame {
     		else {
     			isStrike=false;
     		}
-    		if (isSpare==true) {
+    		if (isSpare==true ) {
     			isSpare=false;
-    			score+=numberPins;
+    			if (hasWonExtraRoll!=true) {
+    				score+=numberPins;
+    			}
     		}
     		if (roll1Score+numberPins==10) {
     			isSpare=true;
@@ -128,8 +133,9 @@ public class BowlingGame {
     			framesToPlay--;
     			roll1Score=0;
     		}
+
     	}
-    	// Allow to add one or two extra rolls if game is finished by a spare or a strike
+    	// Allow to add one roll if game is finished by a spare (if a strike, we add a frame and not a roll)
     	if (framesToPlay==0 && rollsToPlay==0 && isSpare==true && hasWonExtraFrame!=true) {
     		rollsToPlay++;
     		hasWonExtraRoll=true;
