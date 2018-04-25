@@ -26,6 +26,7 @@ public class BowlingGameTest {
         assertEquals(false, game.checkIfCheater());
         assertEquals(false, game.checkIfHasWonExtraRoll());
         assertEquals(false, game.checkIfHasWonExtraFrame());
+        assertEquals(1000.0, game.getPercentageDifference(1,-1));
     }
     
     @Test
