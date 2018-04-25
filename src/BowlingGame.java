@@ -149,9 +149,7 @@ public class BowlingGame {
     		alertCheater=true;
     	}	
     }
-    public double getPercentageDifference(long previousResult, long currentResult) {
-        return (currentResult - previousResult) * 100.0 / previousResult;
-       }
+
 
     
 
